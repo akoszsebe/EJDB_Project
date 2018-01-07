@@ -4,9 +4,9 @@ let path = require('path')
 
 module.exports = (app,dataBase) => {
 	console.log('mak')
-	// app.get('/device/getConfigurationPage', (req,res) => {
-	// 	res.sendFile(path.resolve('./backend/pages/configpage.html'))
-	// })
+	app.get('/', (req,res) => {
+		res.sendFile(path.resolve('./backend/pages/index.html'))
+	})
 
 	app.get('/api/saveUser', (req, res) => {
 		var objBody;
@@ -22,12 +22,11 @@ module.exports = (app,dataBase) => {
 		var name = objBody.name;
 		var male = objBody.male;	
 		var age = objBody.age;
-		dataBase.saveUser(name,male,age,function(error){
-			if(error){
-				console.error('error:',error)
+		dataBase.saveUser(name,male,age,function(callback){
+			if(callback){
+				res.json(callback);
 			}
 		})
-		res.send("OK");
 	})
 
 	app.get('/api/listUsers', (req,res) => {
@@ -39,7 +38,4 @@ module.exports = (app,dataBase) => {
 		})
 	})
 
-	app.get('/', (req,res) => {
-		res.send("SmartHomeServer")
-	})
 }
