@@ -54,6 +54,7 @@ DataBase.prototype.listUsers = function (_callback) {
 		
 		while (cursor.next()) {
 			var tmp = {};
+			tmp.id = cursor.field('_id');
 			tmp.name = cursor.field('name');
 			tmp.male = cursor.field('male');
 			tmp.age = cursor.field('age'); 
@@ -66,3 +67,15 @@ DataBase.prototype.listUsers = function (_callback) {
     });
 }
 
+DataBase.prototype.loadUser = function (id,_callback) {
+	var self = this;
+	
+	db.load('users',id, function(err, data) {
+        if (err) {
+            console.error(err);
+            return _callback(null);
+		}
+        console.log("Found " + data + " users");
+        return _callback(data);
+    });
+}

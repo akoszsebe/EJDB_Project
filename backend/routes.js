@@ -8,6 +8,10 @@ module.exports = (app,dataBase) => {
 		res.sendFile(path.resolve('./backend/pages/index.html'))
 	})
 
+	app.get('/transaction', (req,res) => {
+		res.sendFile(path.resolve('./backend/pages/transaction.html'))
+	})
+
 	app.get('/api/saveUser', (req, res) => {
 		var objBody;
 		
@@ -38,4 +42,12 @@ module.exports = (app,dataBase) => {
 		})
 	})
 
+	app.get('/api/loadUser', (req,res) => {
+		var id = req.query.id;
+		console.log('load', id);
+	
+		dataBase.loadUser(id,function(data){ 
+			res.json(data);           
+		})
+	})
 }

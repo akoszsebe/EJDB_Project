@@ -9,9 +9,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="backend/pages/rest.js"></script>
+    <style>
+        .navbar {
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+        }
+    </style>
 </head>
 
 <body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" >EJDB Project</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/transaction">Transaction</a></li>
+          </ul>
+        </div>
+    </nav>
 
     <div style="background:#459CFF !important" class="jumbotron text-center">
         <h1>EJDB Project</h1>
@@ -36,10 +54,10 @@
                     </label>
                 </div>
                 <div class="form-group">
-                    <label for="age">age:</label>
+                    <label for="age">Age:</label>
                     <input type="text" class="form-control" id="age">
                 </div>
-                <button type="button" class="btn btn-primary" onclick="saveUser();">Save</button>
+                <button type="button" class="btn btn-primary" id="btsave" onclick="saveUser();">Save</button>
             </div>
             <div class="col-sm-4">
                 <h3>List</h3>
@@ -47,6 +65,18 @@
                 <br>
                 <div class="panel panel-default">
                     <div class="panel-body" id="list"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <h3>Load and Update</h3>
+                <div class="form-group">
+                    <label for="id">Id:</label>
+                    <input type="text" class="form-control" id="id" required>
+                </div>
+                <button type="button" class="btn btn-info"  onclick="loadUser();">Load</button>
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-body" id="oneuser"></div>
                 </div>
             </div>
         </div>
