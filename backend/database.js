@@ -1,7 +1,7 @@
 "use strict"
 let EJDB = require("ejdb");
 
-let jb = EJDB.open('Dbs/ujdb',
+let db = EJDB.open('Dbs/ujdb',
                     EJDB.DEFAULT_OPEN_MODE | EJDB.JBOTRUNC);
  
 var DataBase = module.exports = function () {
@@ -15,7 +15,7 @@ DataBase.prototype.init = function () {
 
 DataBase.prototype.close = function () {
 	var self = this
-	jd.close();
+	db.close();
 	console.log("disconnected from ejdb");
 }
 
@@ -29,7 +29,7 @@ DataBase.prototype.saveUser = function(name,male,age,_callback) {
     	age : age
 	};
 	
-	jb.save("users", user, function(err, oids) {
+	db.save("users", user, function(err, oids) {
 		if (err) {
 			console.error(err);
 			return _callback(false);
@@ -43,7 +43,7 @@ DataBase.prototype.saveUser = function(name,male,age,_callback) {
 DataBase.prototype.listUsers = function (_callback) {
 	var self = this;
 	
-	jb.find('users', function(err, cursor, count) {
+	db.find('users', function(err, cursor, count) {
         if (err) {
             console.error(err);
             return _callback(null);

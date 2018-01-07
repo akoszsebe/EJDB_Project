@@ -1,6 +1,6 @@
 {
-  "name": "SmartHome",
-  "description": "SmartHome Backend",
+  "name": "EJDB_Project",
+  "description": "EJDB_Project Backend",
   "version": "0.0.2",
   "engines": {
     "node": "6.9.4",
@@ -8,13 +8,18 @@
   },
   "main": "index.js",
   "keywords": [
-    "smarthome"
+    "ejdb"
   ],
   "contributors": [
     {
       "name": "Vincze David",
       "email": "vincdave@yahoo.com",
       "web": "https://github.com/vdave007"
+    },
+    {
+      "name": "Zsebe Akos",
+      "email": "zsebea@yahoo.com",
+      "web": "https://github.com/akoszsebe"
     }
   ],
   "scripts": {
@@ -24,11 +29,12 @@
     "express": "^4.15.3",
     "body-parser": "^1.17.1",
     "http": "^0.0.0",
-    "request-json": "^0.6.2"
+    "request-json": "^0.6.2",
+    "ejdb": "^1.2.12-42"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vdave007/SmartHome.git"
+    "url": "https://github.com/akoszsebe/EJDB_Project.git"
   },
-  "homepage": "https://github.com/vdave007/SmartHome"
+  "homepage": "https://github.com/akoszsebe/EJDB_Project"
 }
