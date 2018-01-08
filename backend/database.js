@@ -2,7 +2,7 @@
 let EJDB = require("ejdb");
 
 let db = EJDB.open('Dbs/ujdb',
-                    EJDB.DEFAULT_OPEN_MODE | EJDB.JBOTRUNC);
+                    EJDB.DEFAULT_OPEN_MODE );
  
 var DataBase = module.exports = function () {
 	this.init()
