@@ -50,4 +50,33 @@ module.exports = (app,dataBase) => {
 			res.json(data);           
 		})
 	})
+	
+	app.get('/api/removeUser', (req,res) => {
+		var id = req.query.id;
+		console.log('load', id);
+	
+		dataBase.removeUser(id,function(data){ 
+			res.json(data);           
+		})
+	})
+	
+	app.get('/api/updateUser', (req, res) => {
+		var objBody;
+		
+		if(req.query.id != undefined){
+			objBody = req.query
+			console.log(req.query);
+		}
+		else{
+			objBody = req.body
+			console.log(req.body);
+		}
+		var id = objBody.id;
+		var name = objBody.name;
+		var male = objBody.male;	
+		var age = objBody.age;
+		dataBase.updateUser(id,name,male,age,function(callback){
+			res.json(callback);
+		})
+	})
 }

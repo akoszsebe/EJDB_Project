@@ -74,9 +74,29 @@
                     <input type="text" class="form-control" id="id" required>
                 </div>
                 <button type="button" class="btn btn-info"  onclick="loadUser();">Load</button>
+                <button type="button" class="btn btn-danger" onclick="removeUser();">Delete</button>
                 <br>
-                <div class="panel panel-default">
-                    <div class="panel-body" id="oneuser"></div>
+                <div id="updtaediv" class="hidden">
+                    <h3>Update</h3>
+                    <div class="form-group">
+                        <label for="upusr">Name:</label>
+                        <input type="text" class="form-control" id="upusr">
+                    </div>
+                    <div class="form-group">
+                        <label for="upmale">Male:</label>
+                        <br>
+                        <label class="radio-inline">
+                            <input type="radio" checked="checked" id="upradiotrue" name="upoptradio">true
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="upoptradio" id="upradiofalse" >false
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="upage">Age:</label>
+                        <input type="text" class="form-control" id="upage">
+                    </div>
+                    <button type="button" class="btn btn-primary" id="btupdate" onclick="updateUser();">Update</button>
                 </div>
             </div>
         </div>

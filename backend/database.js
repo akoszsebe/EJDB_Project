@@ -79,3 +79,35 @@ DataBase.prototype.loadUser = function (id,_callback) {
         return _callback(data);
     });
 }
+
+DataBase.prototype.removeUser = function (id,_callback) {
+	var self = this;
+	
+	db.remove('users',id, function(data) {
+        if (data != undefined) {
+            return _callback(false);
+		}
+        console.log("removed " + data + " users");
+        return _callback(true);
+    });
+}
+
+DataBase.prototype.updateUser = function (id,name,male,age,_callback) {
+	var self = this;
+	
+	var user = {
+		id : id,
+		name : name,
+    	male : male,
+    	age : age
+	};
+
+    db.update('users',{ '_id': id, $set :{'name': name, 'male': male, 'age' : age}}, function(err,count) {
+        if (err != undefined) {
+            return _callback(false);
+		}
+        console.log("updated " + count +"  err: "+ err+ " users");
+        return _callback(true);
+	});
+	
+}
