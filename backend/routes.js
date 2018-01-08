@@ -79,4 +79,25 @@ module.exports = (app,dataBase) => {
 			res.json(callback);
 		})
 	})
+	
+	
+	app.get('/api/updatemultiUser', (req, res) => {
+		var objBody;
+		console.log("UPPPDATTEE ")
+		if(req.query.id1 != undefined){
+			objBody = req.query
+			console.log(req.query);
+		}
+		else{
+			objBody = req.body
+			console.log(req.body);
+		}
+		var id1 = objBody.id1;
+		var name1 = objBody.name1;
+		var id2 = objBody.id2;	
+		var name2 = objBody.name2;
+		dataBase.multiupdateUserTransaction(id1,name1,id2,name2,function(callback){
+			res.json(callback);
+		})
+	})
 }

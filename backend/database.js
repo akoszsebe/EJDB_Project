@@ -94,13 +94,6 @@ DataBase.prototype.removeUser = function (id,_callback) {
 
 DataBase.prototype.updateUser = function (id,name,male,age,_callback) {
 	var self = this;
-	
-	var user = {
-		id : id,
-		name : name,
-    	male : male,
-    	age : age
-	};
 
     db.update('users',{ '_id': id, $set :{'name': name, 'male': male, 'age' : age}}, function(err,count) {
         if (err != undefined) {
@@ -110,4 +103,66 @@ DataBase.prototype.updateUser = function (id,name,male,age,_callback) {
         return _callback(true);
 	});
 	
+}
+
+DataBase.prototype.updateUserTransaction = function (id,name,male,age,_callback) {
+	var self = this;
+	
+	var user = {
+		id : id,
+		name : name,
+    	male : male,
+    	age : age
+	};
+	
+db.beginTransaction('users', function(error) {
+    	db.update('users',{ '_id': id, $set :{'name': name, 'male': male, 'age' : age}}, function(err,count) {
+        	if (err != undefined) {
+            	db.rollbackTransaction('users', function(e){
+            		console.log("rollback ",e);
+            		return _callback(false);
+            	});
+			}
+        	console.log("updated " + count +"  err: "+ err+ " users");
+        	db.commitTransaction('users',function(e) {
+        		console.log("commit ",e);
+        		return _callback(true);	
+        	})
+		});
+	})
+}
+
+
+DataBase.prototype.multiupdateUserTransaction = function (id1,name1,id2,name2,_callback) {
+	var self = this;
+	
+db.beginTransaction('users', function(error) {
+    	db.update('users',{ '_id': id1, $set :{'name': name1 }}, function(err,count) {
+        	if (name1 == 'hiba') err = "hiba";
+        	if (err != undefined) {
+            	db.rollbackTransaction('users', function(e){
+            		console.log("rollback ",e);
+            		return _callback(false);
+            	});
+			} else {
+        		console.log("updated " + count +"  err: "+ err+ " users");
+	        	db.update('users',{ '_id': id2, $set :{'name': name2 }}, function(err,count) {
+	        		if (name2 == 'hiba') err = "hiba";
+		        	if (err != undefined) {
+		            	db.rollbackTransaction('users', function(e){
+		            		console.log("rollback ",e);
+		            		return _callback(false);
+		            	});
+					} else {
+		        		console.log("updated " + count +"  err: "+ err+ " users");
+		        		db.commitTransaction('users',function(e) {
+		        			console.log("commit ",e);
+		        			return _callback(true);	
+		        		})
+					}
+				});
+			}
+		});
+		
+	})
 }

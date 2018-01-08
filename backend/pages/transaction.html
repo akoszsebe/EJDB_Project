@@ -38,13 +38,42 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <h3>valami</h3>
-                
+             <h3>List</h3>
+                <button type="button" class="btn btn-info"  onclick="loadAllUsers();">AllUsers</button>
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-body" id="list"></div>
+                </div>
             </div>
             <div class="col-sm-4">
-                <h3>valami</h3>
-                
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" id="basic-addon1">Id1</span>
+                        <input type="text" class="form-control" id="id1" required>
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" id="basic-addon1">Name1</span>
+                        <input type="text" class="form-control" id="upusr1">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" id="basic-addon1">Id2</span>
+                        <input type="text" class="form-control" id="id2" required>
+                    </div>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon" id="basic-addon1">Name2</span>
+                        <input type="text" class="form-control" id="upusr2">
+                    </div>
+                </div>
             </div>
+             <div class="col-sm-4">
+                 <br>
+                 <button type="button" class="btn btn-primary"  onclick="multiuploadUsers();">Run</button>
+                 <img id="success" src="backend/images/done.png" class="img-circle hidden" style="width:20%" alt="Cinque Terre">
+                 <img id="failed" src="backend/images/failed.png" class="img-circle hidden" style="width:22%" alt="Cinque Terre">
+             </div>
         </div>
     </div>
 

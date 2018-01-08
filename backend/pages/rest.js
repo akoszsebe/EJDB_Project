@@ -103,3 +103,28 @@ function updateUser(){
         }
     });
 }
+
+
+function multiuploadUsers(){
+    var id1 = document.getElementById("id1").value;
+    var name1 = document.getElementById("upusr1").value;
+    var id2 = document.getElementById('id2').value;
+    var name2 = document.getElementById("upusr2").value;
+    $.ajax({
+        url: '/api/updatemultiUser?id1='+id1+'&name1='+name1+'&id2='+id2+'&name2='+name2,
+        data: {},
+        success: function (data) {
+            var tmp = JSON.stringify(data);
+            if (tmp == 'true') {
+                    document.getElementById("success").classList.remove('hidden');
+                    document.getElementById("failed").classList.add('hidden');
+                } else{
+                        document.getElementById("failed").classList.remove('hidden');
+                        document.getElementById("success").classList.add('hidden');   
+                }
+            loadAllUsers();
+        },
+        error: function () {
+        }
+    });
+}
